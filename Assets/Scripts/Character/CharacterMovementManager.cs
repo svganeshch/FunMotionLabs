@@ -36,9 +36,11 @@ public abstract class CharacterMovementManager : MonoBehaviour
         moveDirection.Normalize();
         moveDirection.y = 0;
 
-        float speed = character.walkSpeed;
+        character.characterAnimatorManager.SetAnimatorParameters(horizontalInput, verticalInput, true);
 
-        character.characterController.Move(speed * Time.deltaTime * moveDirection);
+        //float speed = character.walkSpeed;
+
+        //character.characterController.Move(speed * Time.deltaTime * moveDirection);
 
         //Debug.Log("move : " + horizontalInput + ", " + verticalInput);
     }

@@ -15,11 +15,16 @@ public class Player : Character
     // Input Actions
     private InputAction moveAction;
 
+    // Managers
+    [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
+
     protected override void Awake()
     {
         base.Awake();
 
         input = GetComponent<PlayerInput>();
+
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }
 
     protected override void Start()
