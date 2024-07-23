@@ -13,17 +13,21 @@ public class Character : MonoBehaviour
     public float lookSensitivity = 5f;
 
     [Header("Smoothing Controls")]
+    public float animationFadeTime = 0.1f;
     public float speedDampTime = 0.1f;
     public float rotationDampTime = 15f;
 
     // Animation flags
     public bool applyRootMotion = false;
+    public bool canRotate = true;
+    public bool canMove = true;
 
     // Managers
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
     // FSM
     [HideInInspector] public State idleState;
+    [HideInInspector] public State attackState;
     [HideInInspector] public StateMachine characterStateMachine;
 
     protected virtual void Awake()
@@ -38,6 +42,7 @@ public class Character : MonoBehaviour
     {
         characterStateMachine = new StateMachine();
         idleState = new IdleState(this, characterStateMachine);
+        attackState = new AttackState(this, characterStateMachine);
 
         characterStateMachine.Initialize(idleState);
     }
@@ -52,6 +57,8 @@ public class Character : MonoBehaviour
     {
         characterStateMachine.currentState.PhysicsUpdate();
     }
+
+    public virtual void OnGUI() { }
 
     public virtual void OnDrawGizmos()
     {

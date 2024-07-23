@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5349455074472718440}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.317, z: -0.834}
+  m_LocalPosition: {x: 0, y: 1.317, z: -0.269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -522,14 +522,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   characterController: {fileID: 0}
-  walkSpeed: 5
+  walkSpeed: 2.5
+  lookSensitivity: 5
+  animationFadeTime: 0.2
   speedDampTime: 0.1
   rotationDampTime: 15
   applyRootMotion: 0
+  canRotate: 1
+  canMove: 1
   characterAnimatorManager: {fileID: 0}
   moveInput: {x: 0, y: 0}
   horizontalInput: 0
   verticalInput: 0
+  lookInput: {x: 0, y: 0}
+  attackAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8329952c-ad5a-4523-98c2-764025688f39
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   playerAnimatorManager: {fileID: 0}
 --- !u!114 &6134400469278533157
 MonoBehaviour:

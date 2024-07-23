@@ -7,7 +7,9 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     Character character;
 
-    public static readonly int walkF_hash = Animator.StringToHash("walking_F");
+    private int previousActionHash;
+
+    private static readonly int attack1 = Animator.StringToHash("punch_body");
 
     protected virtual void Awake()
     {
@@ -20,5 +22,25 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         character.animator.SetFloat("SpeedX", horizontalInput, character.speedDampTime, Time.deltaTime);
         character.animator.SetFloat("SpeedY", verticalInput, character.speedDampTime, Time.deltaTime);
+    }
+
+    protected virtual void PlayCharacterActionAnimation(
+        int animationClipHash,
+        bool canRotate = false,
+        bool canMove = false,
+        bool applyRootMotion = true)
+    {
+        previousActionHash = animationClipHash;
+
+        character.animator.CrossFade(animationClipHash, character.animationFadeTime);
+
+        character.applyRootMotion = applyRootMotion;
+        character.canRotate = canRotate;
+        character.canMove = canMove;
+    }
+
+    public void PlayAttackAnimation()
+    {
+        PlayCharacterActionAnimation(attack1);
     }
 }

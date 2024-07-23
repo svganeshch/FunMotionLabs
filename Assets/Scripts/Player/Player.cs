@@ -15,8 +15,9 @@ public class Player : Character
     [HideInInspector] public Vector2 lookInput;
 
     // Input Actions
-    private InputAction moveAction;
-    private InputAction lookAction;
+    [HideInInspector] public InputAction moveAction;
+    [HideInInspector] public InputAction lookAction;
+    [HideInInspector] public InputAction attackAction;
 
     // Managers
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
@@ -36,6 +37,7 @@ public class Player : Character
 
         moveAction = input.actions["Move"];
         lookAction = input.actions["Look"];
+        attackAction = input.actions["Attack"];
 
         moveAction.performed += i => moveInput = i.ReadValue<Vector2>();
         lookAction.performed += i => lookInput = i.ReadValue<Vector2>();
@@ -47,5 +49,13 @@ public class Player : Character
 
         horizontalInput = moveInput.x;
         verticalInput = moveInput.y;
+    }
+
+    public override void OnGUI()
+    {
+        base.OnGUI();
+
+        GUI.color = Color.red;
+        GUI.Label(new Rect(0, 0, 200, 20), this.GetType().Name + " : " + characterStateMachine.currentState.ToString());
     }
 }

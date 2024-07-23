@@ -32,6 +32,8 @@ public abstract class CharacterMovementManager : MonoBehaviour
 
     protected virtual void HandleGroundedMovement()
     {
+        if (!character.canMove) return;
+
         GetMovementInput();
 
         moveDirection = playerCamera.forward * verticalInput;
@@ -50,6 +52,8 @@ public abstract class CharacterMovementManager : MonoBehaviour
 
     protected virtual void HandleRotation()
     {
+        if (!character.canRotate) return;
+
         targetRotation = playerCamera.rotation;
         finalRotation = Quaternion.Slerp(character.transform.rotation, targetRotation, character.rotationDampTime * Time.deltaTime);
 
