@@ -18,4 +18,12 @@ public class PlayerMovementManager : CharacterMovementManager
         horizontalInput = player.horizontalInput;
         verticalInput = player.verticalInput;
     }
+
+    public override void GetMouseInput()
+    {
+        xAxisValue = player.lookInput.x * player.lookSensitivity;
+        yAxisValue = player.lookInput.y * player.lookSensitivity;
+
+        yAxisValue = Mathf.Clamp(yAxisValue, -77, 77);
+    }
 }

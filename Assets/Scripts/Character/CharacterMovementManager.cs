@@ -1,10 +1,13 @@
+using Cinemachine;
 using UnityEngine;
 
 public abstract class CharacterMovementManager : MonoBehaviour
 {
     protected Vector3 moveDirection;
-    protected Vector3 targetRotationDirection;
-    protected Vector3 lockedTargetDirection;
+
+    protected float xAxisValue, yAxisValue;
+    protected Quaternion xQuat;
+    protected Quaternion yQuat;
     protected Quaternion targetRotation;
     protected Quaternion finalRotation;
 
@@ -47,21 +50,12 @@ public abstract class CharacterMovementManager : MonoBehaviour
 
     protected virtual void HandleRotation()
     {
-        targetRotationDirection = playerCamera.forward * verticalInput;
-        targetRotationDirection += playerCamera.right * horizontalInput;
-        targetRotationDirection.y = 0f;
-        targetRotationDirection.Normalize();
-
-        if (targetRotationDirection == Vector3.zero)
-        {
-            targetRotationDirection = character.transform.forward;
-        }
-
-        targetRotation = Quaternion.LookRotation(targetRotationDirection);
-
+        targetRotation = playerCamera.rotation;
         finalRotation = Quaternion.Slerp(character.transform.rotation, targetRotation, character.rotationDampTime * Time.deltaTime);
-        character.transform.rotation = finalRotation;
+
+        character.transform.rotation = targetRotation;
     }
 
     public abstract void GetMovementInput();
+    public abstract void GetMouseInput();
 }

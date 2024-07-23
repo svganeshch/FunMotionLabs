@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
 
     [Header("Player Controls")]
     public float walkSpeed = 5f;
+    public float lookSensitivity = 5f;
 
     [Header("Smoothing Controls")]
     public float speedDampTime = 0.1f;

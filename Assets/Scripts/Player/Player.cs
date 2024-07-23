@@ -12,8 +12,11 @@ public class Player : Character
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalInput;
 
+    [HideInInspector] public Vector2 lookInput;
+
     // Input Actions
     private InputAction moveAction;
+    private InputAction lookAction;
 
     // Managers
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
@@ -32,8 +35,10 @@ public class Player : Character
         base.Start();
 
         moveAction = input.actions["Move"];
+        lookAction = input.actions["Look"];
 
         moveAction.performed += i => moveInput = i.ReadValue<Vector2>();
+        lookAction.performed += i => lookInput = i.ReadValue<Vector2>();
     }
 
     protected override void Update()
