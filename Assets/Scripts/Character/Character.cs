@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
 
     protected virtual void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
 

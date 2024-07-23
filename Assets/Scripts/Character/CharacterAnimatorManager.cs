@@ -7,6 +7,8 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     Character character;
 
+    public DamageHandler[] damageHandlers;
+
     private int previousActionHash;
 
     private static readonly int attack1 = Animator.StringToHash("punch_body");
@@ -14,6 +16,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<Character>();
+        damageHandlers = GetComponentsInChildren<DamageHandler>();
     }
 
     public void SetAnimatorParameters(float horizontalInput, float verticalInput, bool applyRootMotion = false)
@@ -42,5 +45,22 @@ public class CharacterAnimatorManager : MonoBehaviour
     public void PlayAttackAnimation()
     {
         PlayCharacterActionAnimation(attack1);
+    }
+
+    // Animation events
+    public void StartDamage()
+    {
+        foreach (var handler in damageHandlers)
+        {
+            handler.StartDamage();
+        }
+    }
+
+    public void StopDamage()
+    {
+        foreach (var handler in damageHandlers)
+        {
+            handler.StopDamage();
+        }
     }
 }
