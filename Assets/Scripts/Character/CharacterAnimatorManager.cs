@@ -16,7 +16,7 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     public void SetAnimatorParameters(float horizontalInput, float verticalInput, bool applyRootMotion = false)
     {
-        if (character.applyRootMotion) character.animator.applyRootMotion = applyRootMotion;
+        character.applyRootMotion = applyRootMotion;
 
         character.animator.SetFloat("SpeedX", horizontalInput, character.speedDampTime, Time.deltaTime);
         character.animator.SetFloat("SpeedY", verticalInput, character.speedDampTime, Time.deltaTime);

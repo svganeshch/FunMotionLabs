@@ -976,6 +976,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5246431592826957188, guid: a05eca476cb1cbb4fb8c6cf10479bc7d,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5281535795511906808, guid: a05eca476cb1cbb4fb8c6cf10479bc7d,
         type: 3}
       propertyPath: povCamera
