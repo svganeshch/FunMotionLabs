@@ -21,6 +21,8 @@ public class CharacterAnimatorManager : MonoBehaviour
     private static readonly int dodge = Animator.StringToHash("dodge");
     private static readonly int block = Animator.StringToHash("block_F");
 
+    private static readonly int hit_body = Animator.StringToHash("hit_body");
+
     protected virtual void Awake()
     {
         character = GetComponent<Character>();
@@ -78,6 +80,11 @@ public class CharacterAnimatorManager : MonoBehaviour
         //previousDodgeActionHash = nextDodgeActionHash;
 
         PlayCharacterActionAnimation(nextDodgeActionHash);
+    }
+
+    public void PlayHitAction()
+    {
+        PlayCharacterActionAnimation(hit_body);
     }
 
     // Animation events

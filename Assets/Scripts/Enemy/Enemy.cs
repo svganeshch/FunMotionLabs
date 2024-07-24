@@ -14,6 +14,11 @@ public class Enemy : Character
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public override void SetupStates()
     {
         base.SetupStates();

@@ -30,6 +30,7 @@ public class Character : MonoBehaviour
     [HideInInspector] public State idleState;
     [HideInInspector] public State attackState;
     [HideInInspector] public State dodgeState;
+    [HideInInspector] public State hitState;
     [HideInInspector] public StateMachine characterStateMachine;
 
     protected virtual void Awake()
@@ -46,6 +47,7 @@ public class Character : MonoBehaviour
     {
         characterStateMachine = new StateMachine();
 
+        hitState = new HitState(this, characterStateMachine);
         SetupStates();
     }
 
