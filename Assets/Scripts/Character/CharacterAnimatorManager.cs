@@ -63,7 +63,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         }
         previousAttackActionHash = nextAttackActionHash;
 
-        PlayCharacterActionAnimation(nextAttackActionHash);
+        PlayCharacterActionAnimation(nextAttackActionHash, true, true);
     }
 
     public void PlayDodgeAnimation()
