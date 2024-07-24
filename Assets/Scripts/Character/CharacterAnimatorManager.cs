@@ -10,8 +10,10 @@ public class CharacterAnimatorManager : MonoBehaviour
     public DamageHandler[] damageHandlers;
 
     private int previousActionHash;
+    private int nextActionHash;
 
     private static readonly int attack1 = Animator.StringToHash("punch_body");
+    private static readonly int attack2 = Animator.StringToHash("punch_cross");
 
     protected virtual void Awake()
     {
@@ -42,9 +44,19 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.canMove = canMove;
     }
 
-    public void PlayAttackAnimation()
+    public void PlayAttackAnimation(bool canCombo)
     {
-        PlayCharacterActionAnimation(attack1);
+        nextActionHash = attack1;
+
+        if (canCombo)
+        {
+            if (previousActionHash == attack1)
+                nextActionHash = attack2;
+            else if (previousActionHash == attack2)
+                nextActionHash = attack1;
+        }
+
+        PlayCharacterActionAnimation(nextActionHash);
     }
 
     // Animation events
@@ -62,5 +74,15 @@ public class CharacterAnimatorManager : MonoBehaviour
         {
             handler.StopDamage();
         }
+    }
+
+    public void EnableCombo()
+    {
+        character.canCombo = true;
+    }
+
+    public void DisableCombo()
+    {
+        character.canCombo = false;
     }
 }
