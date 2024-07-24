@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    NavMeshAgent navMeshAgent;
+    public Player playerTarget;
+    [HideInInspector] public NavMeshAgent navMeshAgent;
 
     protected override void Awake()
     {
