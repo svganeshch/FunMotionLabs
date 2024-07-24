@@ -7,6 +7,7 @@ public class IdleState : State
     Player player;
 
     bool attack = false;
+    bool dodge = false;
 
     public IdleState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
     {
@@ -18,11 +19,17 @@ public class IdleState : State
         base.Enter();
 
         attack = false;
+        dodge = false;
     }
 
     public override void HandleInput()
     {
         base.HandleInput();
+
+        if (player.dodgeAction.WasPressedThisFrame())
+        {
+            dodge = true;
+        }
 
         if (player.attackAction.WasPressedThisFrame())
         {
@@ -33,6 +40,12 @@ public class IdleState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (dodge)
+        {
+            dodge = false;
+            stateMachine.ChangeState(player.dodgeState);
+        }
 
         if (attack)
         {

@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     // FSM
     [HideInInspector] public State idleState;
     [HideInInspector] public State attackState;
+    [HideInInspector] public State dodgeState;
     [HideInInspector] public StateMachine characterStateMachine;
 
     protected virtual void Awake()
@@ -46,6 +47,7 @@ public class Character : MonoBehaviour
         characterStateMachine = new StateMachine();
         idleState = new IdleState(this, characterStateMachine);
         attackState = new AttackState(this, characterStateMachine);
+        dodgeState = new DodgeState(this, characterStateMachine);
 
         characterStateMachine.Initialize(idleState);
     }

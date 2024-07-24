@@ -18,6 +18,7 @@ public class Player : Character
     [HideInInspector] public InputAction moveAction;
     [HideInInspector] public InputAction lookAction;
     [HideInInspector] public InputAction attackAction;
+    [HideInInspector] public InputAction dodgeAction;
 
     // Managers
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
@@ -38,6 +39,7 @@ public class Player : Character
         moveAction = input.actions["Move"];
         lookAction = input.actions["Look"];
         attackAction = input.actions["Attack"];
+        dodgeAction = input.actions["Dodge"];
 
         moveAction.performed += i => moveInput = i.ReadValue<Vector2>();
         lookAction.performed += i => lookInput = i.ReadValue<Vector2>();

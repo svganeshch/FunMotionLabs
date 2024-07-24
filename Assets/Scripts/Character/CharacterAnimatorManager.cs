@@ -9,11 +9,17 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     public DamageHandler[] damageHandlers;
 
-    private int previousActionHash;
-    private int nextActionHash;
+    private int previousAttackActionHash;
+    private int nextAttackActionHash;
+
+    private int previousDodgeActionHash;
+    private int nextDodgeActionHash;
 
     private static readonly int attack1 = Animator.StringToHash("punch_body");
     private static readonly int attack2 = Animator.StringToHash("punch_cross");
+
+    private static readonly int dodge = Animator.StringToHash("dodge");
+    private static readonly int block = Animator.StringToHash("block_F");
 
     protected virtual void Awake()
     {
@@ -35,7 +41,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         bool canMove = false,
         bool applyRootMotion = true)
     {
-        previousActionHash = animationClipHash;
+        
 
         character.animator.CrossFade(animationClipHash, character.animationFadeTime);
 
@@ -46,17 +52,32 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     public void PlayAttackAnimation(bool canCombo)
     {
-        nextActionHash = attack1;
+        nextAttackActionHash = attack1;
 
         if (canCombo)
         {
-            if (previousActionHash == attack1)
-                nextActionHash = attack2;
-            else if (previousActionHash == attack2)
-                nextActionHash = attack1;
+            if (previousAttackActionHash == attack1)
+                nextAttackActionHash = attack2;
+            else if (previousAttackActionHash == attack2)
+                nextAttackActionHash = attack1;
         }
+        previousAttackActionHash = nextAttackActionHash;
 
-        PlayCharacterActionAnimation(nextActionHash);
+        PlayCharacterActionAnimation(nextAttackActionHash);
+    }
+
+    public void PlayDodgeAnimation()
+    {
+        nextDodgeActionHash = block;
+
+        //if (previousDodgeActionHash == dodge)
+        //    nextDodgeActionHash = block;
+        //else if (previousDodgeActionHash == block)
+        //    nextDodgeActionHash = dodge;
+
+        //previousDodgeActionHash = nextDodgeActionHash;
+
+        PlayCharacterActionAnimation(nextDodgeActionHash);
     }
 
     // Animation events
