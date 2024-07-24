@@ -17,6 +17,7 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     private static readonly int attack1 = Animator.StringToHash("punch_body");
     private static readonly int attack2 = Animator.StringToHash("punch_cross");
+    private static readonly int attack3 = Animator.StringToHash("hook_body_short");
 
     private static readonly int dodge = Animator.StringToHash("dodge");
     private static readonly int block = Animator.StringToHash("block_F");
@@ -61,6 +62,8 @@ public class CharacterAnimatorManager : MonoBehaviour
             if (previousAttackActionHash == attack1)
                 nextAttackActionHash = attack2;
             else if (previousAttackActionHash == attack2)
+                nextAttackActionHash = attack3;
+            else if (previousAttackActionHash == attack3)
                 nextAttackActionHash = attack1;
         }
         previousAttackActionHash = nextAttackActionHash;

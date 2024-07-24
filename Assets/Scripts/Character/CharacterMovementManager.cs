@@ -11,6 +11,9 @@ public abstract class CharacterMovementManager : MonoBehaviour
     protected Quaternion targetRotation;
     protected Quaternion finalRotation;
 
+    [HideInInspector] public Vector3 yVelocity;
+    [HideInInspector] public float gravityForce = -40;
+
     protected float horizontalInput;
     protected float verticalInput;
 
@@ -27,6 +30,7 @@ public abstract class CharacterMovementManager : MonoBehaviour
     public virtual void Update()
     {
         HandleGroundedMovement();
+        HandleGroundCheck();
         HandleRotation();
     }
 
@@ -48,6 +52,13 @@ public abstract class CharacterMovementManager : MonoBehaviour
         character.characterController.Move(speed * Time.deltaTime * moveDirection);
 
         //Debug.Log("move : " + horizontalInput + ", " + verticalInput);
+    }
+
+    protected virtual void HandleGroundCheck()
+    {
+        yVelocity.y += gravityForce * Time.deltaTime;
+
+        character.characterController.Move(yVelocity * Time.deltaTime);
     }
 
     protected virtual void HandleRotation()

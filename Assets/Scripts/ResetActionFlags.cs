@@ -16,6 +16,8 @@ public class ResetActionFlags : StateMachineBehaviour
         character.canMove = true;
         character.canRotate = true;
         character.applyRootMotion = false;
+        character.characterAnimatorManager.StopDamage();
+        character.characterAnimatorManager.DisableCombo();
 
         character.characterStateMachine.ChangeState(character.idleState);
     }

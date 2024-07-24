@@ -21,7 +21,10 @@ public class Character : MonoBehaviour
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
-    public bool canCombo = true;
+    public bool canCombo = false;
+
+    public LayerMask playerLayerMask;
+    public LayerMask enemyLayerMask;
 
     // Managers
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;

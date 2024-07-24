@@ -15,8 +15,12 @@ public class DamageReceiver : MonoBehaviour
     {
         if (collidedWith == null) return;
 
-        
-        character.characterStateMachine.ChangeState(character.hitState);
-        Debug.Log("damaged from : " + collidedWith);
+        if (1 << collidedWith.gameObject.layer == character.playerLayerMask ||
+            1 << collidedWith.gameObject.layer == character.enemyLayerMask)
+        {
+            Character damagedCharacter = collidedWith.GetComponent<Character>();
+            damagedCharacter.characterStateMachine.ChangeState(damagedCharacter.hitState);
+            Debug.Log(character.gameObject + " damaged : " + collidedWith);
+        }
     }
 }
