@@ -53,6 +53,17 @@ public class Player : Character
         verticalInput = moveInput.y;
     }
 
+    public override void SetupStates()
+    {
+        base.SetupStates();
+
+        idleState = new IdleState(this, characterStateMachine);
+        attackState = new AttackState(this, characterStateMachine);
+        dodgeState = new DodgeState(this, characterStateMachine);
+
+        characterStateMachine.Initialize(idleState);
+    }
+
     public override void OnGUI()
     {
         base.OnGUI();

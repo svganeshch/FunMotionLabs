@@ -45,11 +45,8 @@ public class Character : MonoBehaviour
     protected virtual void Start()
     {
         characterStateMachine = new StateMachine();
-        idleState = new IdleState(this, characterStateMachine);
-        attackState = new AttackState(this, characterStateMachine);
-        dodgeState = new DodgeState(this, characterStateMachine);
 
-        characterStateMachine.Initialize(idleState);
+        SetupStates();
     }
 
     protected virtual void Update()
@@ -62,6 +59,8 @@ public class Character : MonoBehaviour
     {
         characterStateMachine.currentState.PhysicsUpdate();
     }
+
+    public virtual void SetupStates() { }
 
     public virtual void OnGUI() { }
 
